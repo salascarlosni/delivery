@@ -1,0 +1,66 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+option go_package = "./proto";
+
+service RestaurantService {
+    rpc GetRestaurants(google.protobuf.Empty) returns (GetRestaurantsResponse) {}
+    rpc AddRestaurant(AddRestaurantRequest) returns (AddRestaurantResponse) {}
+    rpc DeleteRestaurant(DeleteRestaurantRequest) returns (DeleteRestaurantResponse) {}
+    rpc UpdateRestaurant(UpdateRestaurantRequest) returns (UpdateRestaurantResponse) {}
+
+    // Client requests
+    rpc GetOrders(GetOrdersRequest) returns (GetOrdersResponse) {}
+}
+
+message Restaurant {
+    string id = 1;
+    string name = 2;
+    string image = 3;
+    bool is_open = 4;
+}
+
+message GetRestaurantsResponse {
+    repeated Restaurant data = 1;
+}
+
+message AddRestaurantRequest {
+    string name = 1;
+    string open_hour = 2;
+    string close_hour = 3;
+    bytes image = 4;
+}
+
+message AddRestaurantResponse {
+    string restaurant_id = 1;
+}
+
+message DeleteRestaurantRequest {
+    string restaurant_id = 1;
+}
+
+message DeleteRestaurantResponse {
+    string restaurant_id = 1;
+}
+
+message UpdateRestaurantRequest {
+    string restaurant_id = 1;
+    string name = 2;
+    string open_hour = 3;
+    string close_hour = 4;
+    bytes image = 5;
+}
+
+message UpdateRestaurantResponse {
+    string restaurant_id = 1;
+}
+
+message GetOrdersRequest {
+    string restaurant_id = 1;
+}
+
+message GetOrdersResponse {
+    string order_id = 1;
+    string datetime = 2;
+}
+

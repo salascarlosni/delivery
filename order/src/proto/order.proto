@@ -1,0 +1,41 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+option go_package = "./proto";
+
+service OrderServices {
+    rpc GetOrders(google.protobuf.Empty) returns (GetOrdersResponse) {}
+    rpc AddOrder(AddOrderRequest) returns (AddOrderResponse) {}
+    rpc GetOrdersFromRestaurant(GetOrdersFromRestaurantRequest) returns (GetOrdersFromRestaurantResponse) {}
+}
+
+message Order {
+    string id = 1;
+}
+
+message Product {
+    string id = 1;
+    int64 quantity = 2;
+}
+
+
+message GetOrdersResponse {
+    repeated Order order = 1;
+}
+
+message AddOrderRequest {
+    repeated Product products = 1;
+}
+
+message AddOrderResponse {
+    string order_id = 1;
+}
+
+message GetOrdersFromRestaurantRequest {
+    int64 restaurant_id = 1;
+    string status = 2;
+}
+
+message GetOrdersFromRestaurantResponse {
+    repeated Order order = 1;
+}
