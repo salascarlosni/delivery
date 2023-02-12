@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option go_package = "./proto";
+
+service ProductService {
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
+  rpc GetProducts(GetProductsRequest) returns (GetProductsResponse) {}
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {}
+}
+
+message CreateProductRequest {
+  string name = 1;
+  bytes image = 2;
+  string restaurant_id = 3;
+}
+
+message CreateProductResponse {
+  string id = 1;
+}
+
+message GetProductsRequest {
+  string id = 1;
+}
+
+message GetProductsResponse {
+  string id = 1;
+  string name = 2;
+  string image = 3;
+  string restaurant_id = 4;
+}
+
+message UpdateProductRequest {
+  string id = 1;
+  string name = 2;
+  bytes image = 3;
+  string restaurant_id = 4;
+}
+
+message UpdateProductResponse {
+  string id = 1;
+}
+
+message DeleteProductRequest {
+  string id = 1;
+}
+
+message DeleteProductResponse {
+  string id = 1;
+}
